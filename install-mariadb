@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Install MariaDB di Ubuntu tanpa konfigurasi interaktif
+
+echo "===> Update dan upgrade sistem"
+sudo apt update && sudo apt upgrade -y
+
+echo "===> Install MariaDB Server dan Client"
+sudo apt install -y mariadb-server mariadb-client
+
+echo "===> Aktifkan dan jalankan MariaDB"
+sudo systemctl enable mariadb
+sudo systemctl start mariadb
+
+echo "===> Cek status MariaDB"
+sudo systemctl status mariadb --no-pager
+
+echo "===> Install selesai. Konfigurasi keamanan bisa dilakukan nanti dengan:"
+echo "     sudo mysql_secure_installation"
