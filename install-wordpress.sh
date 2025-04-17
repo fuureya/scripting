@@ -1,6 +1,6 @@
-curl -O https://wordpress.org/latest.tar.gz
+sudo curl -O https://wordpress.org/latest.tar.gz
 # Ekstrak file WordPress
-tar -xvzf latest.tar.gz
+sudo tar -xvzf latest.tar.gz
 
 # Pindahkan ke direktori web, misalnya /var/www/html
 sudo mv wordpress /var/www/html/
