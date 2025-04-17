@@ -1,0 +1,8 @@
+-- Buat user 'admin' dengan password 'admin'
+CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';
+
+-- Berikan semua privilege ke user 'admin'
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;
+
+-- Terapkan perubahan privilege
+FLUSH PRIVILEGES;
