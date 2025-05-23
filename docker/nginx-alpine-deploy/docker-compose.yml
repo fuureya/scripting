@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  laravel_alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_alpine
+    ports:
+      - "8500:80"
+    restart: unless-stopped
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - app-network
+
+  db:
+    image: mariadb:10.5
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: asmpid
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
